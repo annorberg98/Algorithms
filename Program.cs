@@ -42,22 +42,17 @@ namespace Programmeringuppgift
                 Sort(array, partitionIndex + 1, high);
             }
         }
-        /*public static void Main(string[] args)
-        {
-            
-
-            Console.ReadKey();
-        }*/
+       
 
         static void Main(string[] args)
         {
             string type = "merge";
 
-            if(type == "merge")
-            {
-                int[] data = MyInsertionTest.ReadIntfile("largeints");
-                int N = data.Length;
+            int[] data = MyInsertionTest.ReadIntfile("largeints");
+            int N = data.Length;
 
+            if (type == "merge")
+            {
                 Console.WriteLine("Mergesort");
 
                 if (N <= 1000)
@@ -91,9 +86,6 @@ namespace Programmeringuppgift
                 
             } else if(type == "quick")
             {
-                int[] data = MyInsertionTest.ReadIntfile("largeints");
-                int N = data.Length;
-
                 Console.WriteLine("QuickSort");
 
                 long before = Environment.TickCount;
