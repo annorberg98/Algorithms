@@ -4,17 +4,20 @@ namespace Programmeringuppgift
 {
     public static class Program
     {
+
         static int Partition(int[] array, int low, int high)
         {
+            int mid = array[array.Length / 2];
             //1. Select a pivot point.
             int pivot = array[high];
+            
 
             int lowIndex = (low - 1);
 
-            //2. Reorder the collection.
+            //2. Reorder the collection. (Shuffle)
             for (int j = low; j < high; j++)
             {
-                if (array[j] < pivot)
+                if (array[j] <= pivot)
                 {
                     lowIndex++;
 
@@ -43,26 +46,10 @@ namespace Programmeringuppgift
             }
         }
 
-        static int[] Shuffle(this Random rng, int[] array)
-        {
-            int n = array.Length;
-            while (n > 1)
-            {
-                int k = rng.Next(n--);
-                int temp = array[n];
-                array[n] = array[k];
-                array[k] = temp;
-            }
-            return array;
-        }
-
-
         static void Main(string[] args)
         {
-            Random rnd = new Random();
-            string type = "merge";
-
-
+            string type = "quick";
+            
             int[] data = MyInsertionTest.ReadIntfile("largeints");
             int N = data.Length;
             Console.WriteLine("Succeded to read file. N: " + N);
