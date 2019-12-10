@@ -9,8 +9,7 @@ namespace Programmeringuppgift
         {
             int mid = array[array.Length / 2];
             //1. Select a pivot point.
-            int pivot = array[high];
-            
+            int pivot = array[low];           
 
             int lowIndex = (low - 1);
 
