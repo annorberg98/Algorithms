@@ -46,10 +46,12 @@ namespace Programmeringuppgift
 
         static void Main(string[] args)
         {
-            string type = "merge";
+            string type = "quick";
 
-            int[] data = MyInsertionTest.ReadIntfile("largeints");
+            int[] data = MyInsertionTest.ReadIntfile("smallints");
             int N = data.Length;
+            Console.WriteLine("Succeded to read file. N: " + N);
+            Console.WriteLine("Largeints: " + len);
 
             if (type == "merge")
             {
