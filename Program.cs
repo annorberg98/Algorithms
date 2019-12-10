@@ -42,59 +42,71 @@ namespace Programmeringuppgift
                 Sort(array, partitionIndex + 1, high);
             }
         }
-        public static void Main(string[] args)
+        /*public static void Main(string[] args)
         {
-            int[] data = MyInsertionTest.ReadIntfile("largeints");
-            int N = data.Length;
-
-            Console.WriteLine("QuickSort");
-
-            long before = Environment.TickCount;
-            Sort(data, 0, N - 1);
-            long after = Environment.TickCount;
-
-            if (MyInsertionTest.IsSorted(data, 0, N - 1))
-            {
-                Console.WriteLine((after - before) / 1000.0 + " seconds");
-            }
+            
 
             Console.ReadKey();
-        }
+        }*/
 
-        /*static void Main(string[] args)
+        static void Main(string[] args)
         {
-            int[] data = MyInsertionTest.ReadIntfile("largeints");
-            int N = data.Length;
+            string type = "merge";
 
-            if (N <= 1000)
+            if(type == "merge")
             {
-                for (int i = 0; i < N; i++)
+                int[] data = MyInsertionTest.ReadIntfile("largeints");
+                int N = data.Length;
+
+                Console.WriteLine("Mergesort");
+
+                if (N <= 1000)
                 {
-                    Console.Write(data[i] + " ");
+                    for (int i = 0; i < N; i++)
+                    {
+                        Console.Write(data[i] + " ");
+                    }
+                    Console.WriteLine("\n\n");
                 }
-                Console.WriteLine("\n\n");
-            }
 
-            long before = Environment.TickCount;
-            int[] sorted = Mergesort.Sort(data);
-            long after = Environment.TickCount;
+                long before = Environment.TickCount;
+                int[] sorted = Mergesort.Sort(data);
+                long after = Environment.TickCount;
 
-            // Look at numbers after sorting, unless there are too many of them.
-            if (N <= 1000)
-            {
-                for (int i = 0; i < N; i++)
+                // Look at numbers after sorting, unless there are too many of them.
+                if (N <= 1000)
                 {
-                    Console.Write(sorted[i] + " ");
+                    for (int i = 0; i < N; i++)
+                    {
+                        Console.Write(sorted[i] + " ");
+                    }
+                    Console.Write("\n");
                 }
-                Console.Write("\n");
-            }
 
-            if (MyInsertionTest.IsSorted(sorted, 0, N - 1))
+                if (MyInsertionTest.IsSorted(sorted, 0, N - 1))
+                {
+                    Console.WriteLine((after - before) / 1000.0 + " seconds");
+                }
+
+                
+            } else if(type == "quick")
             {
-                Console.WriteLine((after - before) / 1000.0 + " seconds");
+                int[] data = MyInsertionTest.ReadIntfile("largeints");
+                int N = data.Length;
+
+                Console.WriteLine("QuickSort");
+
+                long before = Environment.TickCount;
+                Sort(data, 0, N - 1);
+                long after = Environment.TickCount;
+
+                if (MyInsertionTest.IsSorted(data, 0, N - 1))
+                {
+                    Console.WriteLine((after - before) / 1000.0 + " seconds");
+                }
             }
 
             Console.ReadLine();
-        }*/
+        }
     }
 }
