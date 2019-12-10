@@ -2,7 +2,7 @@
 
 namespace Programmeringuppgift
 {
-    class Program
+    public static class Program
     {
         static int Partition(int[] array, int low, int high)
         {
@@ -14,7 +14,7 @@ namespace Programmeringuppgift
             //2. Reorder the collection.
             for (int j = low; j < high; j++)
             {
-                if (array[j] <= pivot)
+                if (array[j] < pivot)
                 {
                     lowIndex++;
 
@@ -42,17 +42,32 @@ namespace Programmeringuppgift
                 Sort(array, partitionIndex + 1, high);
             }
         }
-       
+
+        static int[] Shuffle(this Random rng, int[] array)
+        {
+            int n = array.Length;
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                int temp = array[n];
+                array[n] = array[k];
+                array[k] = temp;
+            }
+            return array;
+        }
+
 
         static void Main(string[] args)
         {
-            string type = "quick";
+            Random rnd = new Random();
+            string type = "merge";
 
-            int[] data = MyInsertionTest.ReadIntfile("smallints");
+
+            int[] data = MyInsertionTest.ReadIntfile("largeints");
             int N = data.Length;
             Console.WriteLine("Succeded to read file. N: " + N);
 
-            if (type == "merge")
+           if (type == "merge")
             {
                 Console.WriteLine("Mergesort");
 
@@ -69,20 +84,13 @@ namespace Programmeringuppgift
                 int[] sorted = Mergesort.Sort(data);
                 long after = Environment.TickCount;
 
-                // Look at numbers after sorting, unless there are too many of them.
-                if (N <= 1000)
-                {
-                    for (int i = 0; i < N; i++)
-                    {
-                        Console.Write(sorted[i] + " ");
-                    }
-                    Console.Write("\n");
-                }
-
+               
                 if (MyInsertionTest.IsSorted(sorted, 0, N - 1))
                 {
                     Console.WriteLine((after - before) / 1000.0 + " seconds");
                 }
+
+                data = sorted;
 
                 
             } else if(type == "quick")
@@ -97,6 +105,16 @@ namespace Programmeringuppgift
                 {
                     Console.WriteLine((after - before) / 1000.0 + " seconds");
                 }
+            }
+
+            // Look at numbers after sorting, unless there are too many of them.  
+            if (N <= 1000)
+            {
+                for (int i = 0; i < N; i++)
+                {
+                    Console.Write(data[i] + " ");
+                }
+                Console.Write("\n");
             }
 
             Console.ReadLine();
